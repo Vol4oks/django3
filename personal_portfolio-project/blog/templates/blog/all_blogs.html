@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<h1>Blog</h1>
+
+{% for Blog in Blogs %}
+
+<a href="{% url 'blog:detail' Blog.id %}"><h2>{{ Blog.title }}<h2></a> 
+
+{% if Blog.image %}
+<img src="{{ Blog.image.url }}">
+{% endif %}
+
+<p>{{ Blog.description }}</p>
+<h4> {{ Blog.date }} </h4>
+
+{% endfor %}
+</html>
