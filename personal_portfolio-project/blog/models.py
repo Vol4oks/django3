@@ -5,3 +5,6 @@ class Blog(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='blog/images/', blank=True)
     date = models.DateField()
+
+    def __str__(self) -> str:
+        return self.title

@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html>
-<h1>Blog</h1>
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h2> Всего постов: {{ Blogs.count }} </h2>
 
 {% for Blog in Blogs %}
 
@@ -10,8 +12,10 @@
 <img src="{{ Blog.image.url }}">
 {% endif %}
 
-<p>{{ Blog.description }}</p>
-<h4> {{ Blog.date }} </h4>
+<p>{{ Blog.description|striptags|truncatechars:50 }}</p>
+<h5> {{ Blog.date|date:'M d Y' }} </h5>
 
 {% endfor %}
-</html>
+
+
+{% endblock content %}

@@ -1,35 +1,28 @@
-<!DOCTYPE html>
-<html>
+{% extends 'portfolio/base.html' %}
 
-<style>
-    img {
-    max-width: 100%;
-    height: auto;
-    }
-</style>
+{% block content %}
+  {% load static %}
+  <a href="{% url 'blog:all_blogs' %}">blog</a>
+  <br>
 
-<h1>Портфолио</h1>
+  <img src="{% static 'portfolio\_MG_6130 .jpg' %}" alt=""
+    height="500" width="500">
 
-{% load static %}
+  <br>
+  <a href = "{% static 'portfolio\Основы_Python_Научитесь_мыслить_как_программист_2021_Аллен_Б_Дауни.pdf' %}"> Неплохая книга </a>
 
-<a href="{% url 'blog:all_blogs' %}">blog</a>
-<br>
+  {% for project in projects %}
 
-<img src="{% static 'portfolio\_MG_6130 .jpg' %}" alt=""
-  height="500" width="500">
+  <h2>{{ project.title }}<h2> 
+  <p>{{ project.description }}</p>
+  <img src="{{ project.image.url }}">
 
-<br>
-<a href = "{% static 'portfolio\Основы_Python_Научитесь_мыслить_как_программист_2021_Аллен_Б_Дауни.pdf' %}"> Неплохая книга </a>
+  {% if project.url %}
+  <br><a href = "{{ project.url }}">Link</a>
+  {% endif %}
 
-{% for project in projects %}
+  {% endfor %}
 
-<h2>{{ project.title }}<h2> 
-<p>{{ project.description }}</p>
-<img src="{{ project.image.url }}">
+{% endblock content %}    
 
-{% if project.url %}
-<br><a href = "{{ project.url }}">Link</a>
-{% endif %}
 
-{% endfor %}
-</html>
